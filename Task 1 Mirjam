@@ -1,4 +1,21 @@
-#This is my file, where i do stuff and things.
+#Only theoretical part so far. not working.
+def f(x,y):
+    z=x+y
+    return(z)
+
+
+def explicit_Euler(f,T,N):
+    u0=f(0,y)
+    U=[u0]
+    h=T/N
+    t=[0]
+    for i in range(1,N+1):
+        ti=t[0]+i*h
+        t.append(ti)
+        U.append(U[-1]+h*f(t[-2], U[-1]))
+        print(U)
+    print(e**t[-1]*(-t[-1]*e**-t[-1]-e**-t[-1]))
+    return (t[-1], U[-1])
 
 
 
