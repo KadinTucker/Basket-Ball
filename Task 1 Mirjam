@@ -1,18 +1,31 @@
-#Only theoretical part so far.
-def f(x,y):
+#Only theoretical part so far. As stated in discord before, i did not manage to apply it to our differential equations, as they
+#involve further derivatives which i cannot calculate or approximate. If any of you guys reading this figures it out, let me know. I am
+#happy for input. It is working well though with testing functions. (for further accuracy for testing functions that dont go through (0,0)
+#adjust u(0) aka y(0).
+
+
+def f(x,y):                                                             #Testingfunction
     z=x+y
     return(z)
 
 
 def explicit_Euler(f,T,N):
-    t0=0
-    u0=f(t0,0)
-    U=[u0]
-    h=T/N
-    t=[t0]
-    for i in range(1,N+1):
-        ti=t[0]+i*h
-        t.append(ti)
+    t0=0                                                                #t=[0,T]. So this is the starting t (=x coordinate)
+    u0=f(t0,0)                                                          #u0 is the beginning value for the approximation loop. f(0,0)    
+    U=[u0]                                                              #u0 is added to a list U which will contain the y coordinates.
+    h=T/N                                                               #h=stepsize
+    t=[t0]                                                              #t will contain the x coordinates. aka [0,T]
+    for i in range(1,N+1):                                              #Now i follow the formula on the task. For every i it adds a value
+        ti=t[0]+i*h                                                     # to the U and the t list that is depending on the previous element.
+        t.append(ti)                                                    #(as we have done in previous python exercises)
         U.append(U[-1]+h*f(t[-2], U[-1]))
-    print(e**(t[-1])*((-t[-1])*e**(-t[-1])-(e**(-t[-1])) +1))
-    return (t[-1], U[-1])
+    print(e**(t[-1])*((-t[-1])*e**(-t[-1])-(e**(-t[-1])) +1))           #=testingfunction solution. By printing we can compare the solution.
+    return (t[-1], U[-1])                                               #The function returns the last x and y coordinates. (as asked for)
+
+
+#Two things.
+#1. As the explicit euler is only allowed to have f,N and T as input, i had to define the beginning y value (u0) as a local variable.
+#That obviously is not so good because it has to be adjusted to every function you run through. 
+#
+#2. I do not see a way of using it to solve our problem. as the functions for x and y are nowhere defined and i can thus not get solutions
+#x' and y'. I am happy for help. 
