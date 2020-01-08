@@ -8,11 +8,11 @@ def f(x,y):                                                             #Testing
     z=x+y
     return(z)
 
+f0=f(0,0)
 
-def explicit_Euler(f,T,N):
-    t0=0                                                                #t=[0,T]. So this is the starting t (=x coordinate)
-    u0=f(t0,0)                                                          #u0 is the beginning value for the approximation loop. f(0,0)    
-    U=[u0]                                                              #u0 is added to a list U which will contain the y coordinates.
+def explicit_Euler(f0,f,T,N):
+    t0=0                                                                #t=[0,T]. So this is the starting t (=x coordinate)                                                          #u0 is the beginning value for the approximation loop. f(0,0)    
+    U=[f0]                                                              #f0 is added to a list U which will contain the y coordinates.
     h=T/N                                                               #h=stepsize
     t=[t0]                                                              #t will contain the x coordinates. aka [0,T]
     for i in range(1,N+1):                                              #Now i follow the formula on the task. For every i it adds a value
@@ -23,9 +23,4 @@ def explicit_Euler(f,T,N):
     return (t[-1], U[-1])                                               #The function returns the last x and y coordinates. (as asked for)
 
 
-#Two things.
-#1. As the explicit euler is only allowed to have f,N and T as input, i had to define the beginning y value (u0) as a local variable.
-#That obviously is not so good because it has to be adjusted to every function you run through. 
-#
-#2. I do not see a way of using it to solve our problem. as the functions for x and y are nowhere defined and i can thus not get solutions
-#x' and y'. I am happy for help. 
+
