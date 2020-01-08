@@ -23,7 +23,7 @@ def temp(x,y,z0,a0,xB,yB,N=200,tol=1e-5):
         if abs(yB-y[i+1])<tol: #when y->yB break
             break
     if abs(xB-x[-1])>tol or abs(yB-y[-1])>tol:
-        pass
+        raise Exception("It did not reach the tolerance, try a higher N.")
     return(x[-1],y[-1])
 
 #ToDo: error checking
