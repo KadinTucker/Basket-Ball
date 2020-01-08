@@ -10,15 +10,20 @@ from  matplotlib.pyplot import *
 #N is the number of iterations
 #xdz,xda,ydz,yda are the derivate functions of x and y respectively, over z and a respectively
 
-def temp(x,y,z0,a0,xB,N=20,tol=1e-5):
+def temp(x,y,z0,a0,xB,yB,N=200,tol=1e-5):
     G0 = [x[0],y[0]] #a 2D vector of the first items of the lists of the 2D vectors
     DG=[[xdz(z0),xda(a0)],[ydz(z0),yda(a0)]] #Jacobian Matrix of the derivatives when the variables = 0
-    dj=-G0*linalg.inv(DG) #the increments
+    step_size=-G0*linalg.inv(DG) #the stepsize
     for i in range(N):
         x.append(x[i]+dj[0])
-        y.append(y[i]+dj[1])
-        if xB-x[i+1]<tol: #when x->xB break
+        if abs(xB-x[i+1])<tol: #when x->xB break
             break
+    for i in range(N):
+        y.append(y[i]+dj[1])
+        if abs(yB-y[i+1])<tol: #when y->yB break
+            break
+    if abs(xB-x[-1])>tol or abs(yB-y[-1])>tol:
+        pass
     return(x[-1],y[-1])
 
 #ToDo: error checking
